@@ -57,29 +57,39 @@ Command Line Arguments:
 
 Performance Analysis of FP32 Precision Models (in seconds )
 
-Name	Loading FP32	FPS ( in seconds )	Avg. Inference time FP32	Total Inference time FP32
-Face detection	0.46175241470336914	25.59700246966908	0.03906707440392446	2.304957389831543
-Facial Landmark detection	0.9716916084289551	281.5110027120001	0.0035522590249271718	0.20958328247070312
-Head Pose detection	0.21136951446533203	312.7201978448859	0.003197746761774612	0.18866705894470215
-Gaze Estimation	0.525824785232544	221.20195508454276	0.00452075570316638	0.2667245864868164
+Face detection:
+- Loading: 0.46 
+- Inference time: 1.8
+
+Facial Landmark detection:
+- Loading: 0.97 
+- Inference time: 0.21
+
+Head Pose detection:
+- Loading: 0.21 
+- Inference time: 0.19
+
+Gaze Estimation:
+- Loading: 0.52 
+- Inference time: 0.27
+
+
 Performance Analysis of FP16 Precision Models (in seconds )
 
-Name	Loading FP16	FPS ( in seconds )	Avg. Inference time FP16	Total Inference time FP16
-Face detection	--	--	--	--
-Facial Landmark detection	1.7589049339294434	284.23515358400977	0.0035182136600300415	0.20757460594177246
-Head Pose detection	0.4001595973968506	393.37309921441084	0.0025421158742096463	0.14998483657836914
-Gaze Estimation	0.29756903648376465	229.9613478535207	0.0043485568741620595	0.2565648555755615
-Results
+Face detection: N/A
 
+Facial Landmark detection:
+- Loading: 1.7 
+- Inference time: 0.21
+
+Head Pose detection:
+- Loading: 0.4 
+- Inference time: 0.15
+
+Gaze Estimation:
+- Loading: 0.3 
+- Inference time: 0.26
 
 ## Results
-*TODO:* Discuss the benchmark results and explain why you are getting the results you are getting. For instance, explain why there is difference in inference time for FP32, FP16 and INT8 models.
 
-## Stand Out Suggestions
-This is where you can provide information about the stand out suggestions that you have attempted.
-
-### Async Inference
-If you have used Async Inference in your code, benchmark the results and explain its effects on power and performance of your project.
-
-### Edge Cases
-There will be certain situations that will break your inference flow. For instance, lighting changes or multiple people in the frame. Explain some of the edge cases you encountered in your project and how you solved them to make your project more robust.
+FP16 models take slightly more time to load, but take less time for inference. 
