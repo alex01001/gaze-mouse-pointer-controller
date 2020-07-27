@@ -3,8 +3,33 @@
 This project uses a gaze detection model to control the mouse pointer of a computer. Intel OpenVINO Gaze Estimation model is used to estimate the gaze of the user's eyes and change the mouse pointer position accordingly.  I have used the following pre-trained models from the Model Zoo: face detection model, head-pose estimation model, facial landmarks model, and gaze estimation.
 
 
-## Project Set Up and Installation
-*TODO:* Explain the setup procedures to run your project. For instance, this can include your project directory structure, the models you need to download and where to place them etc. Also include details about how to install the dependencies your project requires.
+## Project Set Up and Installation (for Windows 10)
+
+- Install OpenVINO™ toolkit and its dependencies to run the application. OpenVINO 2020.4 is used on this project. See the installation documentation here:
+https://docs.openvinotoolkit.org/latest/openvino_docs_install_guides_installing_openvino_windows_fpga.html
+
+- create virtual environment - optional, but recommended 
+- clone this repository  
+- download the following models from the Model Zoo:
+https://download.01.org/opencv/2020/openvinotoolkit/2020.1/open_model_zoo/models_bin/1/
+
+Face Detection Model
+
+python /intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "face-detection-adas-binary-0001"
+
+Facial Landmark Detection Model
+
+python /intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "landmarks-regression-retail-0009"
+
+HeadPose Estimation Model
+
+python /intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "head-pose-estimation-adas-0001"
+
+Gaze Estimation Model
+
+python /intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "gaze-estimation-adas-0002"
+
+
 
 ## Demo
 *TODO:* Explain how to run a basic demo of your model.
