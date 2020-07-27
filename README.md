@@ -39,23 +39,33 @@ If needed, replace the models paths (refer to the documentation section for desc
 
 ## Documentation
 
-Command Line Arguments:
+OpenVINO documentation: https://docs.openvinotoolkit.org/latest/index.html
+
+
+Application Command Line Arguments:
 
 -h : help
+
 -fl (required) : path to Facial Landmark Detection model's xml file
+
 -f (required) : path to Face Detection model's xml file
+
 -g (required) : path to Gaze Estimation model's xml file
+
 -hp (required) : path to Head Pose Estimation model's xml file
+
 -i (required) : path to input video file OR 'cam' for taking input from webcam
+
 -l (optional) : absolute path of cpu extension if some layers of models are not supported on the device.
+
 -prob (optional) : Probability threshold for model to detect the face accurately from the video frame.
+
 -d (optional) : target device to run the model on. Options are: CPU, GPU, FPGA, MYRIAD.
 
 
 ## Benchmarks
-*TODO:* Include the benchmark results of running your model on multiple hardwares and multiple model precisions. Your benchmarks can include: model loading time, input/output processing time, model inference time etc.
 
-Performance Analysis of FP32 Precision Models (in seconds )
+Performance Analysis of FP32 Precision Models (in seconds):
 
 Face detection:
 - Loading: 0.46 
@@ -74,7 +84,7 @@ Gaze Estimation:
 - Inference time: 0.27
 
 
-Performance Analysis of FP16 Precision Models (in seconds )
+Performance Analysis of FP16 Precision Models (in seconds):
 
 Face detection: N/A
 
