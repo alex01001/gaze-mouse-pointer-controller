@@ -1,6 +1,7 @@
 # Computer Pointer Controller
 
-*TODO:* Write a short introduction to your project
+This project uses a gaze detection model to control the mouse pointer of a computer. Intel OpenVINO Gaze Estimation model is used to estimate the gaze of the user's eyes and change the mouse pointer position accordingly.  I have used the following pre-trained models from the Model Zoo: face detection model, head-pose estimation model, facial landmarks model, and gaze estimation.
+
 
 ## Project Set Up and Installation
 *TODO:* Explain the setup procedures to run your project. For instance, this can include your project directory structure, the models you need to download and where to place them etc. Also include details about how to install the dependencies your project requires.
