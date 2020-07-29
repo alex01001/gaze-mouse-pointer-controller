@@ -14,7 +14,7 @@ https://docs.openvinotoolkit.org/latest/openvino_docs_install_guides_installing_
 
   Activate the virtual environment by running:
 
-    source your-env/bin/activate
+    your-env\Scripts\activate
     
 - clone this repository  
 - download the following models from the Model Zoo:
