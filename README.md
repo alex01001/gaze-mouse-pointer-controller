@@ -8,7 +8,14 @@ This project uses a gaze detection model to control the mouse pointer of a compu
 - Install OpenVINO™ toolkit and its dependencies to run the application. OpenVINO 2020.4 is used on this project. See the installation documentation here:
 https://docs.openvinotoolkit.org/latest/openvino_docs_install_guides_installing_openvino_windows_fpga.html
 
-- create virtual environment - optional, but recommended 
+- create virtual environment by running the following command:
+
+    python3 -m venv <your-env>
+
+  Activate the virtual environment by running:
+
+    source your-env/bin/activate
+    
 - clone this repository  
 - download the following models from the Model Zoo:
 
@@ -33,6 +40,7 @@ https://docs.openvinotoolkit.org/latest/openvino_docs_install_guides_installing_
 
 ## Demo
 To run the project demo, from 'src' folder execute:
+
 python gaze_mouse_control.py -f face-detection-adas-binary-0001.xml -fl landmarks-regression-retail-0009.xml -hp head-pose-estimation-adas-0001.xml -g gaze-estimation-adas-0002.xml -i demo.mp4
 
 If needed, replace the models paths (refer to the documentation section for descriptions of command line argumants)
@@ -61,6 +69,10 @@ Application Command Line Arguments:
 -prob (optional) : Probability threshold for model to detect the face accurately from the video frame.
 
 -d (optional) : target device to run the model on. Options are: CPU, GPU, FPGA, MYRIAD.
+
+-v (optional) : Optional model visualization flags. Use it to diaplay the model outputs. 
+                fd = Face Detection, fld = Facial Landmark Detection, hp for Head Pose Estimation, ge for Gaze Estimation.
+                Flags should be separated by space.
 
 
 ## Benchmarks
