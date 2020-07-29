@@ -41,13 +41,18 @@ def build_argparser():
     parser.add_argument("-d", "--device", type=str, default="CPU",
                         help="Target device to run on: "
                              "Options: CPU (default), GPU, FPGA or MYRIAD is acceptable. Sample ")
-    
+    parser.add_argument("-v", "--visualizationFlags", required=False, nargs='+',
+                            default=[],
+                            help="Optional model visualization flags."
+                                 "fd = Face Detection, fld = Facial Landmark Detection, hp for Head Pose Estimation, ge for Gaze Estimation"
+                                 "Flags should be separated by space." )    
     return parser
 
 
 
 
 args = build_argparser().parse_args()
+visualizationFlags = args.visualizationFlags
 
 inputFilePath = args.input
 inputFeeder = None
@@ -101,6 +106,31 @@ for frame in inputFeeder.next_batch():
     leftEye, rightEye, eyeCoords = face_landmarks_detection.predict(face.copy())
     # estimating gaze
     mouseCoord, gazeVector = gaze_estimation.predict(leftEye, rightEye, hp)
+    
+    if (len(visualizationFlags)>0):
+        pFrame = frame.copy()
+        if 'fd' in visualizationFlags:
+            cv2.rectangle(pFrame, (face_coords[0], face_coords[1]), (face_coords[2], face_coords[3]), (255,0,0), 3)
+            pFrame = face
+        if 'hp' in visualizationFlags:
+            cv2.putText(pFrame, "Head Angles: yaw:{:.2f} | pitch:{:.2f} | roll:{:.2f}".format(hp[0],hp[1],hp[2]), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        if 'fld' in visualizationFlags:
+            cv2.rectangle(face, (eyeCoords[0][0]-10, eyeCoords[0][1]-10), (eyeCoords[0][2]+10, eyeCoords[0][3]+10), (0,255,0), 3)
+            cv2.rectangle(face, (eyeCoords[1][0]-10, eyeCoords[1][1]-10), (eyeCoords[1][2]+10, eyeCoords[1][3]+10), (0,255,0), 3)
+            pFrame[face_coords[1]:face_coords[3], face_coords[0]:face_coords[2]] = face
+        if 'ge' in visualizationFlags:
+            x, y, w = int(gazeVector[0]*12), int(gazeVector[1]*12), 160
+            le =cv2.line(leftEye.copy(), (x-w, y-w), (x+w, y+w), (255,0,255), 2)
+            cv2.line(le, (x-w, y+w), (x+w, y-w), (255,0,255), 2)
+            re = cv2.line(rightEye.copy(), (x-w, y-w), (x+w, y+w), (255,0,255), 2)
+            cv2.line(re, (x-w, y+w), (x+w, y-w), (255,0,255), 2)
+            face[eyeCoords[0][1]:eyeCoords[0][3],eyeCoords[0][0]:eyeCoords[0][2]] = le
+            face[eyeCoords[1][1]:eyeCoords[1][3],eyeCoords[1][0]:eyeCoords[1][2]] = re
+            pFrame[face_coords[1]:face_coords[3], face_coords[0]:face_coords[2]] = face            
+        
+        cv2.imshow("model visualization",cv2.resize(pFrame,(500,500)))
+ 
+    
     
     if frame_count%5==0:
         mouse_controller.move(mouseCoord[0],mouseCoord[1])    
